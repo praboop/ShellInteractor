@@ -188,13 +188,14 @@ public class UnixShell {
 	}
 
 	/**
-	 * Sets the shell command prompt. Default is <code>admin:</code>
+	 * Sets the shell command prompt. This should be a regular expression. Default is <code>admin:</code>
 	 * 
 	 * @param prompt
 	 */
 	public void setCommandPrompt(String prompt) {
-		this.CMDPROMPT = prompt.replace("^", "");
+		this.CMDPROMPT = prompt;
 	}
+	
 
 	/**
 	 * @return Returns command timeout in seconds
@@ -373,7 +374,7 @@ public class UnixShell {
 				// Register cmd prompt
 				if (!patternToLookForMap.containsKey(CMDPROMPT))
 					patternToLookForMap.put(CMDPROMPT, new Response(CMDPROMPT,
-							"", DEFAULT_TIMEOUT, false));
+							"", DEFAULT_TIMEOUT, true));
 
 				pr("## Response from server ##");
 				while (!terminateJob) {
